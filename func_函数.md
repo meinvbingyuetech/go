@@ -17,7 +17,7 @@ func (c Circle) getArea() float64 {
 ```
 
 ----
-```
+```go
 func getSequence() func() int {
    i:=0
    return func() int {
@@ -33,4 +33,6 @@ func main(){
    fmt.Println(nextNumber())
    fmt.Println(nextNumber())
 }
+ 
+// 输出 1 2
 ```
