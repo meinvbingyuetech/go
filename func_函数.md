@@ -7,9 +7,10 @@ func main() {
 }
 
 type Circle struct {
-   radius float64
+   radius float64  //Circle 类型对象的属性
 }
 
+//该 method 属于 Circle 类型对象中的方法
 func (c Circle) getArea() float64 {
    return 3.14 * c.radius * c.radius
 }
