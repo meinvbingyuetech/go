@@ -1,3 +1,4 @@
+-  方法
 ```go
 
 func main() {
@@ -18,6 +19,7 @@ func (c Circle) getArea() float64 {
 ```
 
 ----
+- 闭包
 ```go
 func getSequence() func() int {
    i:=0
@@ -40,6 +42,7 @@ func main(){
 
 ----
 
+- 函数作为值
 ```go
 func main() {
    /* 定义局部变量 */
