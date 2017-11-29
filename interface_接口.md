@@ -21,11 +21,14 @@ func main() {
 	var phone Phone
 	phone = new(vivo)
 	phone.call()
+	str := phone.say()
+	fmt.Println(str)
 }
 
 
 type Phone interface {
 	call()
+	say() string
 }
 
 type vivo struct {
@@ -34,6 +37,10 @@ type vivo struct {
 
 func (v vivo) call() {
 	fmt.Println("vivo 手机")
+}
+
+func (v vivo) say() string {
+	return "vivo 手机真好用"
 }
 
 ```
