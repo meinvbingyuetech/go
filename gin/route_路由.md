@@ -17,10 +17,40 @@ func main() {
 			"message": "pong",
 			"status":  "geted",
 		})
+		
+		var msg struct {
+			Name    string `json:"user"`
+			Message string
+			Number  int
+		}
+		msg.Name = "Lena"
+		msg.Message = "hey"
+		msg.Number = 123
+		c.JSON(http.StatusOK, msg)
+		
+		c.XML(http.StatusOK, gin.H{
+			"message": "hey", 
+			"status": http.StatusOK
+		})
+		
+		c.YAML(http.StatusOK, gin.H{
+			"message": "hey", 
+			"status": http.StatusOK
+		})
 
 		c.String(http.StatusOK, "Hello %s", name)
 
 	})
+	
+	route.SecureJsonPrefix(")]}',\n")
+	route.GET("/secureJSON", func(c *gin.Context) {
+		names := []string{"lena", "austin", "foo"}
+		c.SecureJSON(http.StatusOK, names)
+	})
+	/*
+	)]}',
+	["lena","austin","foo"]
+	*/
 	
  	route.Any("/testing", testing)
 	
