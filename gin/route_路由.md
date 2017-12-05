@@ -67,8 +67,8 @@ func testing(c *gin.Context) {
 	c.String(200, "Success")
 }
 ```
-----
 
+----
 - 所有请求
 ```go
 router.GET("/someGet", getting)
@@ -178,3 +178,12 @@ curl -X POST http://localhost:8080/upload \
   -F "upload[]=@/Users/appleboy/test2.zip" \
   -H "Content-Type: multipart/form-data"
 ```
+
+----
+- 静态文件
+```go
+router.Static("/assets", "./assets")
+router.StaticFS("/more_static", http.Dir("my_file_system"))
+router.StaticFile("/favicon.ico", "./resources/favicon.ico")
+```
+
