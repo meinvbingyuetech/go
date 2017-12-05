@@ -26,7 +26,8 @@ func main() {
 }
 ```
 ----
-- 所有请求
+
+- 所有请求
 ```go
 router.GET("/someGet", getting)
 router.POST("/somePost", posting)
