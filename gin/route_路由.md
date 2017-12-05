@@ -13,6 +13,7 @@ func main() {
   
 	router.GET("/ping", func(c *gin.Context) {
 
+		// 输出json
 		c.JSON(200, gin.H{
 			"message": "pong",
 			"status":  "geted",
@@ -28,26 +29,30 @@ func main() {
 		msg.Number = 123
 		c.JSON(http.StatusOK, msg)
 		
+		// 输出xml
 		c.XML(http.StatusOK, gin.H{
 			"message": "hey", 
 			"status": http.StatusOK
 		})
 		
+		// 输出yaml
 		c.YAML(http.StatusOK, gin.H{
 			"message": "hey", 
 			"status": http.StatusOK
 		})
 
+		// 输出text
 		c.String(http.StatusOK, "Hello %s", name)
 
 	})
 	
+	// 输出安全json
 	route.SecureJsonPrefix(")]}',\n")
 	route.GET("/secureJSON", func(c *gin.Context) {
 		names := []string{"lena", "austin", "foo"}
 		c.SecureJSON(http.StatusOK, names)
 	})
-	/*
+	/* output:
 	)]}',
 	["lena","austin","foo"]
 	*/
