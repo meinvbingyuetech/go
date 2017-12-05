@@ -4,12 +4,12 @@ package main
 import "github.com/gin-gonic/gin"
 
 func main() {
-  // Disable Console Color
-// gin.DisableConsoleColor()
+	// Disable Console Color
+	// gin.DisableConsoleColor()
 
-// Creates a gin router with default middleware:
-// logger and recovery (crash-free) middleware
-router := gin.Default()
+	// Creates a gin router with default middleware:
+	// logger and recovery (crash-free) middleware
+	router := gin.Default()
   
 	// 基本用法
 	router.GET("/ping", func(c *gin.Context) {
