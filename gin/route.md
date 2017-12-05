@@ -38,6 +38,28 @@ router.PATCH("/somePatch", patching)
 router.HEAD("/someHead", head)
 router.OPTIONS("/someOptions", options)
 ```
+
+
+----
+- 路由组
+```go
+// Simple group: v1
+v1 := router.Group("/v1")
+{
+	v1.POST("/login", loginEndpoint)
+	v1.POST("/submit", submitEndpoint)
+	v1.POST("/read", readEndpoint)
+}
+
+// Simple group: v2
+v2 := router.Group("/v2")
+{
+	v2.POST("/login", loginEndpoint)
+	v2.POST("/submit", submitEndpoint)
+	v2.POST("/read", readEndpoint)
+}
+```
+
 ----
 - 获取路径
 ```go
@@ -111,6 +133,7 @@ router.POST("/upload", func(c *gin.Context) {
 ```
 ```
 curl -X POST http://localhost:8080/upload \
-  -F "file=@/Users/appleboy/test.zip" \
+  -F "upload[]=@/Users/appleboy/test1.zip" \
+  -F "upload[]=@/Users/appleboy/test2.zip" \
   -H "Content-Type: multipart/form-data"
 ```
