@@ -13,6 +13,16 @@ type Login struct {
 	Password string `form:"password" json:"password" binding:"required"`
 }
 
+type form struct {
+    Colors []string `form:"colors[]"`
+}
+
+func formHandler(c *gin.Context) {
+    var myform form
+    c.ShouldBind(&myform)
+    c.JSON(200, gin.H{"color": myform.Colors})
+}
+
 func main() {
 	router := gin.Default()
 
