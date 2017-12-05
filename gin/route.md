@@ -15,6 +15,7 @@ func main() {
 
 		c.JSON(200, gin.H{
 			"message": "pong",
+			"status":  "geted",
 		})
 
 		c.String(http.StatusOK, "Hello %s", name)
@@ -57,5 +58,14 @@ router.GET("/welcome", func(c *gin.Context) {
 	lastname := c.Query("lastname") // shortcut for c.Request.URL.Query().Get("lastname")
 
 	c.String(http.StatusOK, "Hello %s %s", firstname, lastname)
+})
+```
+
+----
+- 表单提交
+```go
+router.POST("/form_post", func(c *gin.Context) {
+	message := c.PostForm("message")
+	nick := c.DefaultPostForm("nick", "anonymous")
 })
 ```
