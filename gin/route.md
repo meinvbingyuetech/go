@@ -89,3 +89,28 @@ curl -X POST http://localhost:8080/upload \
   -F "file=@/Users/appleboy/test.zip" \
   -H "Content-Type: multipart/form-data"
 ```
+
+---- 
+- 多个文件上传
+```go
+// router.MaxMultipartMemory = 8 << 20  // 8 MiB
+router.POST("/upload", func(c *gin.Context) {
+	// Multipart form
+	form, _ := c.MultipartForm()
+	files := form.File["upload[]"]
+
+	for _, file := range files {
+		log.Println(file.Filename)
+
+		// Upload the file to specific dst.
+		// c.SaveUploadedFile(file, dst)
+	}
+	c.String(http.StatusOK, fmt.Sprintf("%d files uploaded!", len(files)))
+})
+
+```
+```
+curl -X POST http://localhost:8080/upload \
+  -F "file=@/Users/appleboy/test.zip" \
+  -H "Content-Type: multipart/form-data"
+```
