@@ -21,9 +21,15 @@ func main() {
 		c.String(http.StatusOK, "Hello %s", name)
 
 	})
- 
+	
+ 	route.Any("/testing", testing)
+	
 	router.Run() // listen and serve on 0.0.0.0:8080
 	// router.Run(":3000")
+}
+
+func testing(c *gin.Context) {
+	c.String(200, "Success")
 }
 ```
 ----
