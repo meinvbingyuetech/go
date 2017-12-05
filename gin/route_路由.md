@@ -187,3 +187,10 @@ router.StaticFS("/more_static", http.Dir("my_file_system"))
 router.StaticFile("/favicon.ico", "./resources/favicon.ico")
 ```
 
+----
+- 跳转
+```go
+router.GET("/test", func(c *gin.Context) {
+	c.Redirect(http.StatusMovedPermanently, "http://www.google.com/")
+})
+```
