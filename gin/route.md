@@ -69,3 +69,23 @@ router.POST("/form_post", func(c *gin.Context) {
 	nick := c.DefaultPostForm("nick", "anonymous")
 })
 ```
+
+---- 
+- 单个文件上传
+```go
+// router.MaxMultipartMemory = 8 << 20  // 8 MiB
+router.POST("/upload", func(c *gin.Context) {
+	file, _ := c.FormFile("file")
+	log.Println(file.Filename)
+
+	// Upload the file to specific dst.
+	// c.SaveUploadedFile(file, dst)
+
+})
+
+```
+```
+curl -X POST http://localhost:8080/upload \
+  -F "file=@/Users/appleboy/test.zip" \
+  -H "Content-Type: multipart/form-data"
+```
