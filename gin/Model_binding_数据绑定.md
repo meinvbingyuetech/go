@@ -1,4 +1,11 @@
 ```go
+package main
+
+import (
+	"github.com/gin-gonic/gin"
+	"net/http"
+	"github.com/gin-gonic/gin/binding"
+)
 
 // Binding from JSON
 type Login struct {
@@ -8,6 +15,20 @@ type Login struct {
 
 func main() {
 	router := gin.Default()
+
+	// Example for binding JSON {"user": "jason", "password": "123"}
+	router.POST("/loginAuto", func(c *gin.Context) {
+		var data Login
+		if err := c.ShouldBindWith(&data, binding.Form); err == nil {
+			if data.User == "jason" && data.Password == "123" {
+				c.JSON(http.StatusOK, gin.H{"status": "you are logged in by auto"})
+			} else {
+				c.JSON(http.StatusUnauthorized, gin.H{"status": "unauthorized"})
+			}
+		} else {
+			c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		}
+	})
 
 	// Example for binding JSON {"user": "manu", "password": "123"}
 	router.POST("/loginJSON", func(c *gin.Context) {
