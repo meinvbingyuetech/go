@@ -59,6 +59,9 @@ func main() {
 	})
 
 	// Example for binding a HTML form (user=manu&password=123)
+	// If `GET`, only `Form` binding engine (`query`) used.
+	// If `POST`, first checks the `content-type` for `JSON` or `XML`, then uses `Form` (`form-data`).
+	// See more at https://github.com/gin-gonic/gin/blob/master/binding/binding.go#L48
 	router.POST("/loginForm", func(c *gin.Context) {
 		var form Login
 		// This will infer what binder to use depending on the content-type header.
