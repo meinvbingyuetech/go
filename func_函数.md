@@ -40,6 +40,30 @@ func main(){
 // 输出 1 2
 ```
 
+```go
+func main() {
+	a := []int{1, 2, 3}
+	for _, i := range a {
+		defer func() {
+			fmt.Println(i)
+		}()
+	}
+}
+输出 3 3 3
+```
+
+```go
+func main() {
+	a := []int{1, 2, 3}
+	for _, i := range a {
+		func() {
+			fmt.Println(i)
+		}()
+	}
+}
+输出 1 2 3
+```
+
 ----
 
 - 函数作为值
