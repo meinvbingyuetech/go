@@ -11,6 +11,8 @@ import (
 type Login struct {
 	User     string `form:"user" json:"user" binding:"required"`
 	Password string `form:"password" json:"password" binding:"required"`
+	CreatedAt   time.Time `form:"-" json:"created_at" db:"created_at"`
+	UpdatedAt   time.Time `form:"-" json:"updated_at" db:"updated_at"`
 }
 
 type form struct {
