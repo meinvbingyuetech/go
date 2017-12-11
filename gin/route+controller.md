@@ -25,11 +25,13 @@ func main() {
 	router.GET("/ping", func(c *gin.Context) {
 
 		// 输出json
+			// base
 		c.JSON(200, gin.H{
 			"message": "pong",
 			"status":  "geted",
 		})
 		
+			// 定义再赋值
 		var msg struct {
 			Name    string `json:"user"`
 			Message string
@@ -39,6 +41,17 @@ func main() {
 		msg.Message = "hey"
 		msg.Number = 123
 		c.JSON(http.StatusOK, msg)
+		
+			// 嵌套输出
+		c.JSON(http.StatusOK, gin.H{
+		    "status":  gin.H{
+			"status_code": http.StatusOK,
+			"status":      "ok",
+		    },
+		    "message": message,
+		    "nick":    nick,
+		})
+		
 		
 		// 输出xml
 		c.XML(http.StatusOK, gin.H{
