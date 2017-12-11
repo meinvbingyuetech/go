@@ -1,4 +1,10 @@
-- 基本用法
+* ><a href="#基本用法">导航</a>
+* ><a href="#">导航</a>
+* ><a href="#">导航</a>
+* ><a href="#">导航</a>
+* ><a href="#">导航</a>
+
+- 基本用法<a name="基本用法"></a>
 ```go
 package main
 
@@ -69,7 +75,7 @@ func testing(c *gin.Context) {
 ```
 
 ----
-- 所有请求
+- 所有请求<a name="所有请求"></a>
 ```go
 router.GET("/someGet", getting)
 router.POST("/somePost", posting)
@@ -82,7 +88,7 @@ router.OPTIONS("/someOptions", options)
 
 
 ----
-- 路由组
+- 路由组<a name="路由组"></a>
 ```go
 // Simple group: v1
 v1 := router.Group("/v1")
@@ -102,7 +108,7 @@ v2 := router.Group("/v2")
 ```
 
 ----
-- 获取路径
+- 获取路径<a name="获取路径"></a>
 ```go
 router.GET("/user/:name/*action", func(c *gin.Context) {
 	name := c.Param("name")
