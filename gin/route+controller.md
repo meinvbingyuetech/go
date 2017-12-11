@@ -1,5 +1,5 @@
 
-> *  <a href="#基本用法">导航</a>
+> *  <a href="#基本用法">基本用法</a>
 > *  <a href="#所有请求">所有请求</a>
 > *  <a href="#获取路径">获取路径</a>
 > *  <a href="#获取参数">获取参数</a>
@@ -67,6 +67,12 @@ func main() {
 
 		// 输出text
 		c.String(http.StatusOK, "Hello %s", name)
+		
+		// 输出html
+		router.LoadHTMLGlob("templates/*")
+		router.GET("/upload", func(c *gin.Context) {
+			c.HTML(http.StatusOK, "upload.html", gin.H{})
+		})	
 
 	})
 	
