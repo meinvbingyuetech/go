@@ -169,12 +169,29 @@ router.POST("/form_post", func(c *gin.Context) {
 ```go
 // router.MaxMultipartMemory = 8 << 20  // 8 MiB
 router.POST("/upload", func(c *gin.Context) {
-	file, _ := c.FormFile("file")
-	log.Println(file.Filename)
+	
+	file, header, err := c.Request.FormFile("file") // file, _ := c.FormFile("file")
+        if err != nil {
+            c.String(http.StatusBadRequest, "Bad request")
+            return
+        }
+        filename := header.Filename
 
+        out, err := os.Create(filename)
+        if err != nil {
+            log.Fatal(err)
+        }
+        defer out.Close()
+	
+        _, err = io.Copy(out, file)
+        if err != nil {
+            log.Fatal(err)
+        }
+	
+        c.String(http.StatusCreated, "upload successful")
+	
 	// Upload the file to specific dst.
 	// c.SaveUploadedFile(file, dst)
-
 })
 
 ```
@@ -190,7 +207,7 @@ curl -X POST http://localhost:8080/upload \
 ```go
 // router.MaxMultipartMemory = 8 << 20  // 8 MiB
 router.POST("/upload", func(c *gin.Context) {
-	// Multipart form
+	// 方式一
 	form, _ := c.MultipartForm()
 	files := form.File["upload[]"]
 
@@ -201,6 +218,40 @@ router.POST("/upload", func(c *gin.Context) {
 		// c.SaveUploadedFile(file, dst)
 	}
 	c.String(http.StatusOK, fmt.Sprintf("%d files uploaded!", len(files)))
+	
+	//  方式二
+	err := c.Request.ParseMultipartForm(200000)
+        if err != nil {
+            log.Fatal(err)
+        }
+
+        formdata := c.Request.MultipartForm 
+
+        files := formdata.File["upload"] 
+        for i, _ := range files {
+            file, err := files[i].Open()
+            defer file.Close()
+	    
+            if err != nil {
+                log.Fatal(err)
+            }
+
+            out, err := os.Create(files[i].Filename)
+            defer out.Close()
+
+            if err != nil {
+                log.Fatal(err)
+            }
+
+            _, err = io.Copy(out, file)
+
+            if err != nil {
+                log.Fatal(err)
+            }
+
+            c.String(http.StatusCreated, "upload successful")
+
+        }
 })
 
 ```
