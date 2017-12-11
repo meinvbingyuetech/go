@@ -1,4 +1,5 @@
-> *  <a href="#基本用法">导航</a>
+# <span id="jump">路由</span>
+> *  <a href="#基本用法">导航</a>
 > *  <a href="#所有请求">所有请求</a>
 > *  <a href="#获取路径">获取路径</a>
 > *  <a href="#获取参数">获取参数</a>
@@ -199,7 +200,7 @@ router.StaticFile("/favicon.ico", "./resources/favicon.ico")
 ```
 
 ----
-- <a name="跳转"></a>跳转
+- <a name="跳转"></a>跳转[Top](#top)
 ```go
 router.GET("/test", func(c *gin.Context) {
 	c.Redirect(http.StatusMovedPermanently, "http://www.google.com/")
