@@ -1,3 +1,40 @@
+````go
+先定义一个中间件函数：
+
+// 该函数很简单，只会给c上下文添加一个属性，并赋值。后面的路由处理器，可以根据被中间件装饰后提取其值
+func MiddleWare() gin.HandlerFunc {
+    return func(c *gin.Context) {
+        c.Set("request", "test_request")
+        c.Next()
+    }
+}
+
+router.Use(MiddleWare())
+{
+	router.GET("/middleware", func(c *gin.Context) {
+	    request := c.MustGet("request").(string)  // 如果没有注册就使用MustGet方法读取c的值将会抛错，可以使用Get方法取而代之。
+	    req, _ := c.Get("request")
+	    c.JSON(http.StatusOK, gin.H{
+		"middile_request": request,
+		"request": req,
+	    })
+	})
+}
+
+````
+
+````
+单个路由中间件
+
+router.GET("/before", MiddleWare(), func(c *gin.Context) {
+	request := c.MustGet("request").(string)
+	c.JSON(http.StatusOK, gin.H{
+	    "middile_request": request,
+	})
+})
+````
+----
+
 ```go
 func main() {
 	// Creates a router without any middleware by default
