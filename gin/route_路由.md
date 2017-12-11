@@ -81,6 +81,7 @@ func testing(c *gin.Context) {
 
 ----
 - <a name="所有请求"></a>所有请求
+[Top](#top)
 ```go
 router.GET("/someGet", getting)
 router.POST("/somePost", posting)
@@ -94,6 +95,7 @@ router.OPTIONS("/someOptions", options)
 
 ----
 <a name="路由组"></a>
+[Top](#top)
 - 路由组
 ```go
 // Simple group: v1
@@ -115,6 +117,7 @@ v2 := router.Group("/v2")
 
 ----
 - <a name="获取路径"></a>获取路径
+[Top](#top)
 ```go
 router.GET("/user/:name/*action", func(c *gin.Context) {
 	name := c.Param("name")
@@ -126,6 +129,7 @@ router.GET("/user/:name/*action", func(c *gin.Context) {
 ```
 ----
 - <a name="获取参数"></a>获取参数
+[Top](#top)
 ```go
 // /welcome?firstname=Jane&lastname=Doe
 router.GET("/welcome", func(c *gin.Context) {
@@ -138,6 +142,7 @@ router.GET("/welcome", func(c *gin.Context) {
 
 ----
 - <a name="表单提交"></a>表单提交
+[Top](#top)
 ```go
 router.POST("/form_post", func(c *gin.Context) {
 	message := c.PostForm("message")
@@ -147,6 +152,7 @@ router.POST("/form_post", func(c *gin.Context) {
 
 ---- 
 - <a name="单个文件上传"></a>单个文件上传
+[Top](#top)
 ```go
 // router.MaxMultipartMemory = 8 << 20  // 8 MiB
 router.POST("/upload", func(c *gin.Context) {
@@ -167,6 +173,7 @@ curl -X POST http://localhost:8080/upload \
 
 ---- 
 - <a name="多个文件上传"></a>多个文件上传
+[Top](#top)
 ```go
 // router.MaxMultipartMemory = 8 << 20  // 8 MiB
 router.POST("/upload", func(c *gin.Context) {
@@ -192,7 +199,8 @@ curl -X POST http://localhost:8080/upload \
 ```
 
 ----
-- <a name="静态文件设置"></a>静态文件设置 [Top](#top)
+- <a name="静态文件设置"></a>静态文件设置
+[Top](#top)
 ```go
 router.Static("/assets", "./assets")
 router.StaticFS("/more_static", http.Dir("my_file_system"))
