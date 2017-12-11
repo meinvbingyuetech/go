@@ -9,10 +9,11 @@ import (
 
 // Binding from JSON
 type Login struct {
-	User     string `form:"user" json:"user" binding:"required"`
-	Password string `form:"password" json:"password" binding:"required"`
-	CreatedAt   time.Time `form:"-" json:"created_at" db:"created_at"`
-	UpdatedAt   time.Time `form:"-" json:"updated_at" db:"updated_at"`
+	User     	string 		`form:"user" json:"user" binding:"required"`
+	Password 	string 		`form:"password" json:"password" binding:"required"`
+	Age      	int    		`form:"age" json:"age"`
+	CreatedAt   	time.Time 	`form:"-" json:"created_at" db:"created_at"`
+	UpdatedAt   	time.Time 	`form:"-" json:"updated_at" db:"updated_at"`
 }
 
 type form struct {
@@ -90,5 +91,45 @@ func main() {
 
 	// Listen and serve on 0.0.0.0:8080
 	router.Run(":8080")
+}
+```
+
+----
+- 示例
+```go
+type User struct {
+    Username string `form:"username" json:"username" binding:"required"`
+    Passwd   string `form:"passwd" json:"passwd" bdinding:"required"`
+    Age      int    `form:"age" json:"age"`
+}
+
+func main(){
+    router := gin.Default()
+    
+    router.POST("/login", func(c *gin.Context) {
+        var user User
+        var err error
+        contentType := c.Request.Header.Get("Content-Type")
+
+        switch contentType {
+        case "application/json":
+            err = c.BindJSON(&user)
+        case "application/x-www-form-urlencoded":
+            err = c.BindWith(&user, binding.Form)
+        }
+
+        if err != nil {
+            fmt.Println(err)
+            log.Fatal(err)
+        }
+
+        c.JSON(http.StatusOK, gin.H{
+            "user":   user.Username,
+            "passwd": user.Passwd,
+            "age":    user.Age,
+        })
+
+    })
+
 }
 ```
