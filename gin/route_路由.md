@@ -200,7 +200,7 @@ curl -X POST http://localhost:8080/upload \
 
 ----
 - <a name="静态文件设置"></a>静态文件设置
-[Top](#top)
+[↑](#top)
 ```go
 router.Static("/assets", "./assets")
 router.StaticFS("/more_static", http.Dir("my_file_system"))
@@ -209,7 +209,7 @@ router.StaticFile("/favicon.ico", "./resources/favicon.ico")
 
 ----
 - <a name="跳转"></a>跳转
-[Top](#top)
+[↑](#top)
 ```go
 router.GET("/test", func(c *gin.Context) {
 	c.Redirect(http.StatusMovedPermanently, "http://www.google.com/")
