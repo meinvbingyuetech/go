@@ -22,3 +22,10 @@ if !ok {
 }
 fmt.Println("The value is ", value)
 ```
+----
+ 
+输出字符串
+
+```go
+panic(fmt.Sprintf("Unknown gin mode %s", gin.Mode()))
+```
