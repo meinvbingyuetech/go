@@ -57,3 +57,52 @@ func (h Humen) SayHi (str string) string {
    Age:int = 30
  SayHi: func(main.Humen, string) string
 ```
+----
+
+## 利用反射修改值
+```
+package main
+
+import (
+	"fmt"
+	"reflect"
+)
+
+func main() {
+
+	var humen Humen
+	humen.Name = "jason"
+	humen.Age = 30
+
+	v := reflect.ValueOf(&humen)
+
+	// 初始值
+	fmt.Println(v)
+
+	if v.Kind() == reflect.Ptr && !v.Elem().CanSet() {
+		fmt.Println("不允许设置值")
+		return
+	} else {
+		v = v.Elem() // 重新赋值
+	}
+
+	f := v.FieldByName("Name")
+	if !f.IsValid() {
+		fmt.Println("字段不存在")
+		return
+	}
+
+	if f.Kind() == reflect.String {
+		f.SetString("meinvbingyue")
+	}
+
+	// 修改过后的值
+	fmt.Println(v)
+}
+
+type Humen struct {
+	Name string
+	Age int
+}
+
+```
