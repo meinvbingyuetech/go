@@ -15,6 +15,13 @@ func main() {
 	humen.Age = 30
 
 	t := reflect.TypeOf(humen)
+	//t := reflect.TypeOf(&humen)  // 如果这样传递，则会报类型不正确
+
+	// 判断类型
+	if k := t.Kind(); k != reflect.Struct {
+		fmt.Println("类型不正确")
+	}
+
 	v := reflect.ValueOf(humen)
 
 	for i := 0; i < t.NumField(); i++ {
@@ -31,8 +38,6 @@ func main() {
 		method_type := t.Method(i).Type
 		fmt.Printf("%6s: %v\n", method_name, method_type)
 	}
-
-
 }
 
 type Humen struct {
