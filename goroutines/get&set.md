@@ -1,3 +1,3 @@
-## chan <- i 		set
+## set ：chan <- i 		
 
-## v := <-chan 	get
+## get ：v := <-chan 	
