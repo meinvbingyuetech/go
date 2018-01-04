@@ -95,7 +95,8 @@ func findField() {
         Name string "bson:`name`"
     }
     var users []User
-    err := c.Find(bson.M{}).Select(bson.M{"name": 1}).All(&users)
+    
+    err := c.Find(bson.M{}).Select(bson.M{"name": 1}).All(&users) // -> db.c1.find({},{"name":1})
     if err != nil {
         panic(err)
     }
@@ -108,7 +109,7 @@ func findField() {
         Age  int    "bson:`age`"
     }
     var users2 []User2
-    err = c.Find(bson.M{}).Select(bson.M{"_id": 0}).All(&users2)
+    err = c.Find(bson.M{}).Select(bson.M{"_id": 0}).All(&users2) // -> db.c1.find({},{"_id":0})
     if err != nil {
         panic(err)
     }
