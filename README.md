@@ -1,4 +1,9 @@
 # go
+ 
+- 抛出错误
+```go
+errors.New("set to zero")
+```
 
 - 一些坑
 ```go
