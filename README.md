@@ -1,5 +1,10 @@
 # go
- 
+- 命令
+```
+go env
+go version
+```
+
 - 抛出错误
 ```go
 errors.New("set to zero")
