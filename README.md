@@ -1,4 +1,7 @@
 # go
+
+- [配置环境变量](https://github.com/meinvbingyuetech/go/blob/master/install_%E5%AE%89%E8%A3%85.md#配置)
+
 - 命令
 ```
 go env
