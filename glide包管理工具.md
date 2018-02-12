@@ -18,7 +18,11 @@ import:
 - package: github.com/cihub/seelog
   version: ~2.6.0
 ------
-4. glide install
+4. 执行安装 
+glide install
+------
+5. 单独安装组件
+glide get gopkg.in/mgo.v2
 ```
  
 - 修改  github.com\Masterminds\glide\path\winbug.go
