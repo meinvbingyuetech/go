@@ -4,8 +4,8 @@
 
 ## 下载
 - 去 https://studygolang.com/dl 这里下载
-- wget https://studygolang.com/dl/golang/go1.9.2.linux-amd64.tar.gz
-- tar -zxvf go1.9.2.linux-amd64.tar.gz
+- wget https://studygolang.com/dl/golang/go1.11.linux-amd64.tar.gz
+- tar -zxvf go1.11.linux-amd64.tar.gz
 
 ## 配置
 - vi /etc/profile
