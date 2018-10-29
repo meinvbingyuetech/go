@@ -12,10 +12,12 @@
 ```
 export GOROOT=/data/go
 export PATH=$GOROOT/bin:$PATH
-export GOPATH=/data/app/go-project
+export GOPATH=/vagrant/www/third-party-api:/vagrant/www/test
+export THIRDPARTYAPISRC=/vagrant/www/third-party-api/src/third.party.api.sscf.com
+export TESTSRC=/vagrant/www/test/src/test.sscf.com
 
 # /data/go 为你解压后的路径
-# /data/app/go-project 为你创建的第一个工作目录 同时这个目录还要创建 bin src pkg 三个目录
+# GOPATH 多个项目用:号 ，然后再分别指定各个项目的src目录下的路径
 ```
 
 - source /etc/profile
